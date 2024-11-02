@@ -2,12 +2,19 @@ using System.Text.Json;
 
 namespace Dev.Noboa
 {
-	record MessageParameters(string Time, bool ShouldMentionCurrentChannel, string? GameName) { }
-
 	class MessageParametersParser
 	{
 		public static MessageParameters Parse(JsonElement root)
 		{
+			// User
+			var userElement = root.GetProperty("member").GetProperty("user");
+			var userId = userElement.GetProperty("id").ToString();
+
+			// Channel
+			var channelElement = root.GetProperty("channel");
+			var channelId = channelElement.GetProperty("id").ToString();
+
+			// Data
 			var dataElement = root.GetProperty("data");
 
 			string? time = null;
@@ -34,7 +41,7 @@ namespace Dev.Noboa
 				}
 			}
 
-			return new MessageParameters(time ?? "", shouldMentionCurrentChannel, gameName);
+			return new MessageParameters(userId, channelId, time ?? "", shouldMentionCurrentChannel, gameName);
 		}
 	}
 

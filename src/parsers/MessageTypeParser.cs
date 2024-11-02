@@ -9,6 +9,7 @@ namespace Dev.Noboa
 		Ping = 1,
 		SlashCommand = 2
 	}
+
 	class MessageTypeParser
 	{
 		public static MessageType ParseMessageTypeFromBody(string requestBody)

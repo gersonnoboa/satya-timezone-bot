@@ -14,7 +14,7 @@ namespace Dev.Noboa
 
 			return slashCommandName switch
 			{
-				"hora" => TimeConverter.Convert(root),
+				"hora" => TimeInteractionRunner.Run(root),
 				_ => new BadRequestResult(),
 			};
 		}
