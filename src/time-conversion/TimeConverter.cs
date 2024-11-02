@@ -34,7 +34,7 @@ namespace Dev.Noboa
 			DateTimeZone timeZone = DateTimeZoneProviders.Tzdb[timeZoneId];
 
 			// Convert LocalDateTime to ZonedDateTime
-			ZonedDateTime zonedDateTime = localDateTime.InZoneStrictly(timeZone);
+			ZonedDateTime zonedDateTime = localDateTime.InZoneLeniently(timeZone);
 
 			return zonedDateTime;
 		}
