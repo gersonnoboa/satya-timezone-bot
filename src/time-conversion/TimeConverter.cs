@@ -18,7 +18,7 @@ namespace Dev.Noboa
 			{
 				if (region.Value == sendingUserRegion.Value) { continue; }
 
-				var regionDateTime = ConvertDateTime(zonedDateTime, region.TimeZoneId);
+				var regionDateTime = ConvertToZonedDateTime(messageParameters.Time, region.TimeZoneId);
 				allDateRegions.Add(new DateRegion(regionDateTime, region));
 
 			}
@@ -62,12 +62,6 @@ namespace Dev.Noboa
 			}
 
 			throw new ArgumentException($"Could not parse the time string {timeString}.");
-		}
-
-		private static ZonedDateTime ConvertDateTime(ZonedDateTime dateTime, string timeZoneId)
-		{
-			DateTimeZone timeZone = DateTimeZoneProviders.Tzdb[timeZoneId];
-			return dateTime.WithZone(timeZone);
 		}
 	}
 }

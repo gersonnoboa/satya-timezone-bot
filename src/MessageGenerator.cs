@@ -11,8 +11,8 @@ namespace Dev.Noboa
 		{
 			var builder = new StringBuilder();
 
-			var game = string.IsNullOrWhiteSpace(messageParameters.GameName) ? $"{messageParameters.GameName} a las " : "";
-			builder.Append($"<@{messageParameters.UserId}>: {game}{messageParameters.Time}");
+			var game = string.IsNullOrWhiteSpace(messageParameters.GameName) ? "" : $" {messageParameters.GameName} ";
+			builder.Append($"<@{messageParameters.UserId}> quiere jugar{game} a las siguientes horas:");
 
 			foreach (var dateRegion in dateRegions)
 			{
