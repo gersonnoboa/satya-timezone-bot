@@ -14,7 +14,7 @@ namespace Dev.Noboa
 				type = 4,
 				data = new
 				{
-					content = $"You said: {messageParameters.Time}, {messageParameters.GameName}, {messageParameters.ShouldMentionCurrentChannel}."
+					content = $"You said: {messageParameters.Time}, game: {messageParameters.GameName}, shouldMention:{messageParameters.ShouldMentionCurrentChannel}."
 				}
 			});
 		}
