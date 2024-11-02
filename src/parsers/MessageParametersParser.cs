@@ -30,7 +30,7 @@ namespace Dev.Noboa
 					{
 						time = option.GetProperty("value").GetString();
 					}
-					else if (optionName == "mencionarCanal")
+					else if (optionName == "mencionar-canal")
 					{
 						shouldMentionCurrentChannel = option.GetProperty("value").GetBoolean();
 					}
