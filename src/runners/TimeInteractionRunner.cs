@@ -11,7 +11,7 @@ namespace Dev.Noboa
 
 			if (!TimeChecker.IsTimeCorrect(messageParameters.Time))
 			{
-				return GenerateJsonResult("Pon bien la hora");
+				return GenerateJsonResult($"Pon bien la hora, pusiste {messageParameters.Time}.");
 			}
 
 			var allDateRegions = TimeConverter.ConvertToAllTimezones(messageParameters);
