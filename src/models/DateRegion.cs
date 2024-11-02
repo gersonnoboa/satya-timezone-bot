@@ -1,5 +1,3 @@
-using NodaTime;
-
 namespace Dev.Noboa;
 
-record DateRegion(ZonedDateTime DateTime, Region Region) { }
+record DateRegion(DateTimeOffset DateTime, Region Region) { }

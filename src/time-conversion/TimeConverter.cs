@@ -1,5 +1,4 @@
-using NodaTime;
-using NodaTime.Text;
+using System.Globalization;
 
 namespace Dev.Noboa;
 
@@ -18,49 +17,47 @@ class TimeConverter
 		{
 			if (region.Value == sendingUserRegion.Value) { continue; }
 
-			var regionDateTime = ConvertToZonedDateTime(messageParameters.Time, region.TimeZoneId);
+			var regionDateTime = ConvertDateTime(zonedDateTime, region.TimeZoneId);
 			allDateRegions.Add(new DateRegion(regionDateTime, region));
 
 		}
 		return allDateRegions;
 	}
 
-	private static ZonedDateTime ConvertToZonedDateTime(string timeString, string timeZoneId)
-	{
-		// Parse the time string into LocalDateTime
-		LocalDateTime localDateTime = ParseLocalDateTime(timeString);
-
-		// Get the timezone info from IANA identifier
-		DateTimeZone timeZone = DateTimeZoneProviders.Tzdb[timeZoneId];
-
-		// Convert LocalDateTime to ZonedDateTime
-		ZonedDateTime zonedDateTime = localDateTime.InZoneLeniently(timeZone);
-
-		return zonedDateTime;
-	}
-
-	private static LocalDateTime ParseLocalDateTime(string timeString)
+	private static DateTimeOffset ConvertToZonedDateTime(string timeString, string timeZoneId)
 	{
 		// Define possible formats
 		var patterns = new[]
 		{
-				LocalDateTimePattern.CreateWithInvariantCulture("h:mmtt"), // e.g. 9:00PM
-				LocalDateTimePattern.CreateWithInvariantCulture("h:mm tt"), // e.g. 9:00 PM
-				LocalDateTimePattern.CreateWithInvariantCulture("H:mm"), // e.g. 21:00
-				LocalDateTimePattern.CreateWithInvariantCulture("h tt"), // e.g. 9 PM
-				LocalDateTimePattern.CreateWithInvariantCulture("htt") // e.g. 9PM
-        	};
+			"h:mmtt",
+			"h:mm tt",
+			"H:mm",
+			"h tt",
+			"htt"
+		};
 
 		foreach (var pattern in patterns)
 		{
-			var parseResult = pattern.Parse(timeString);
-			if (parseResult.Success)
+			DateTime.TryParseExact(timeString, pattern, CultureInfo.InvariantCulture, DateTimeStyles.None, out var localDateTime);
+			if (localDateTime != DateTime.MinValue)
 			{
-				// Return the successfully parsed LocalDateTime
-				return parseResult.Value;
+				localDateTime = DateTime.Today.Add(localDateTime.TimeOfDay);
+				localDateTime = DateTime.SpecifyKind(localDateTime, DateTimeKind.Unspecified);
+				var timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+				var dateTimeOffset = new DateTimeOffset(localDateTime, timeZone.GetUtcOffset(localDateTime));
+
+				return dateTimeOffset;
 			}
 		}
 
 		throw new ArgumentException($"Could not parse the time string {timeString}.");
+	}
+
+	private static DateTimeOffset ConvertDateTime(DateTimeOffset dateTime, string timeZoneId)
+	{
+		TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+		DateTimeOffset dateTimeOffset = TimeZoneInfo.ConvertTime(dateTime, timeZone);
+
+		return dateTimeOffset;
 	}
 }

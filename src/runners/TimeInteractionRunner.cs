@@ -11,7 +11,7 @@ class TimeInteractionRunner
 
 		if (!TimeChecker.IsTimeCorrect(messageParameters.Time))
 		{
-			return GenerateJsonResult($"Pon bien la hora, pusiste {messageParameters.Time}.");
+			return GenerateJsonResult($"Pon bien la hora.");
 		}
 
 		var allDateRegions = TimeConverter.ConvertToAllTimezones(messageParameters);
