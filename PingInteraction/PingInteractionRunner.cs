@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DiscordBot.PingInteraction;
 
-class PingInteractionRunner
+internal abstract class PingInteractionRunner
 {
 	public static JsonResult Run()
 	{

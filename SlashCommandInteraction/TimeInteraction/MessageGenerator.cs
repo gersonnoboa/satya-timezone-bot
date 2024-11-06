@@ -3,7 +3,7 @@ using DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
 namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 
-class MessageGenerator
+internal abstract class MessageGenerator
 {
 	public static string Generate(MessageParameters messageParameters, List<DateRegion> dateRegions)
 	{

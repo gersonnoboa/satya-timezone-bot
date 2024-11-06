@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DiscordBot.SlashCommandInteraction;
 
-class SlashCommandInteractionRunner()
+internal abstract class SlashCommandInteractionRunner
 {
-	static public IActionResult Run(string requestBody)
+	public static IActionResult Run(string requestBody)
 	{
 		using var document = JsonDocument.Parse(requestBody);
 		var root = document.RootElement;

@@ -1,6 +1,6 @@
 namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
-class UsernameToTimezoneMapper
+internal abstract class UsernameToTimezoneMapper
 {
 	private const string GersonId = "319042254058684417";
 	private const string JajeId = "697142901729263739";

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 
-class TimeInteractionRunner
+internal abstract class TimeInteractionRunner
 {
 	public static JsonResult Run(JsonElement root)
 	{

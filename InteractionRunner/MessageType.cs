@@ -1,6 +1,6 @@
 namespace DiscordBot.InteractionRunner;
 
-enum MessageType
+internal enum MessageType
 {
     Unknown = -1,
     Ping = 1,

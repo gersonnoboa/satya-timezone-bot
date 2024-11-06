@@ -1,7 +1,8 @@
 using System.Text.Json;
 
 namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
-class MessageParametersParser
+
+public abstract class MessageParametersParser
 {
 	public static MessageParameters Parse(JsonElement root)
 	{
@@ -20,7 +21,7 @@ class MessageParametersParser
 		var shouldMentionCurrentChannel = false;
 		string? message = null;
 
-		if (dataElement.TryGetProperty("options", out JsonElement optionsElement))
+		if (dataElement.TryGetProperty("options", out var optionsElement))
 		{
 			foreach (var option in optionsElement.EnumerateArray())
 			{

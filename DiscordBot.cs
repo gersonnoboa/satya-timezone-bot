@@ -6,20 +6,13 @@ using Microsoft.Extensions.Logging;
 
 namespace DiscordBot;
 
-public class DiscordBot
+public class DiscordBot(ILogger<DiscordBot> logger)
 {
-    private readonly ILogger<DiscordBot> _logger;
-
-    public DiscordBot(ILogger<DiscordBot> logger)
-    {
-        _logger = logger;
-    }
-
     [Function("DiscordInteraction")]
     public async Task<IActionResult> Run(
     [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req)
     {
-        var runner = new DiscordInteractionRunner(req, _logger);
+        var runner = new DiscordInteractionRunner(req, logger);
         return await runner.Run();
     }
 }

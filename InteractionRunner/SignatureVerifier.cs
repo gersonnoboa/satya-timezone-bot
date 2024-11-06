@@ -6,7 +6,7 @@ namespace DiscordBot.InteractionRunner;
 
 public class SignatureException(string message) : Exception(message) { }
 
-class SignatureVerifier
+internal abstract class SignatureVerifier
 {
 	public static void Verify(HttpRequest request, string requestBody)
 	{

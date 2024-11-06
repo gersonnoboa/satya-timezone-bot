@@ -6,13 +6,13 @@ using Microsoft.Extensions.Logging;
 
 namespace DiscordBot.InteractionRunner;
 
-class DiscordInteractionRunner(HttpRequest request, ILogger logger)
+internal class DiscordInteractionRunner(HttpRequest request, ILogger logger)
 {
 	public async Task<IActionResult> Run()
 	{
 		try
 		{
-			string requestBody = await new StreamReader(request.Body).ReadToEndAsync();
+			var requestBody = await new StreamReader(request.Body).ReadToEndAsync();
 			SignatureVerifier.Verify(request, requestBody);
 			var messageType = MessageTypeParser.ParseMessageTypeFromBody(requestBody);
 

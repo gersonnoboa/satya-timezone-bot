@@ -1,3 +1,3 @@
 namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
-record DateRegion(DateTimeOffset DateTime, Region Region) { }
+internal record DateRegion(DateTimeOffset DateTime, Region Region) { }
