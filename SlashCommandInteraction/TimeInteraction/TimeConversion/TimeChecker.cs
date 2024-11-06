@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
 class TimeChecker
 {

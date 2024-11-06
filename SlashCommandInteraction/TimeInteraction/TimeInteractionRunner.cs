@@ -1,7 +1,8 @@
 using System.Text.Json;
+using DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 
 class TimeInteractionRunner
 {

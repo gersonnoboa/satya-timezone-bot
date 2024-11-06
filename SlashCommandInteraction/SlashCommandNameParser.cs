@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction;
 
 class SlashCommandParserException(string message) : Exception(message) { }
 class SlashCommandNameParser

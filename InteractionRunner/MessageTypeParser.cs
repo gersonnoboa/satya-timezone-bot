@@ -1,7 +1,6 @@
-
 using System.Text.Json;
 
-namespace Dev.Noboa;
+namespace DiscordBot.InteractionRunner;
 
 class MessageTypeParser
 {

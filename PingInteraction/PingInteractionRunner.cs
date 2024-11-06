@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dev.Noboa;
+namespace DiscordBot.PingInteraction;
 
 class PingInteractionRunner
 {

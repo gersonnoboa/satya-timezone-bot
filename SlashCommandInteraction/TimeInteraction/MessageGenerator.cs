@@ -1,7 +1,7 @@
 using System.Text;
-using Microsoft.Extensions.Primitives;
+using DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 
 class MessageGenerator
 {

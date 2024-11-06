@@ -1,6 +1,6 @@
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
-class Region
+internal class Region
 {
 	private Region(string value, string timeZoneId) { Value = value; TimeZoneId = timeZoneId; }
 

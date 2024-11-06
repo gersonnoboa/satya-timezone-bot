@@ -1,4 +1,4 @@
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
 class UsernameToTimezoneMapper
 {

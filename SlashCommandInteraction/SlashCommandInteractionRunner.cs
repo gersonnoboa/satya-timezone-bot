@@ -1,8 +1,8 @@
 using System.Text.Json;
-using Dev.Noboa;
+using DiscordBot.SlashCommandInteraction.TimeInteraction;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction;
 
 class SlashCommandInteractionRunner()
 {

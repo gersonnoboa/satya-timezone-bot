@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Dev.Noboa;
+namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 class MessageParametersParser
 {
 	public static MessageParameters Parse(JsonElement root)

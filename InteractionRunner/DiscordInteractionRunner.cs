@@ -1,8 +1,10 @@
+using DiscordBot.PingInteraction;
+using DiscordBot.SlashCommandInteraction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Dev.Noboa;
+namespace DiscordBot.InteractionRunner;
 
 class DiscordInteractionRunner(HttpRequest request, ILogger logger)
 {

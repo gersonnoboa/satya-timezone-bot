@@ -1,4 +1,4 @@
-namespace Dev.Noboa;
+namespace DiscordBot.InteractionRunner;
 
 enum MessageType
 {

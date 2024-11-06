@@ -2,7 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using NSec.Cryptography;
 
-namespace Dev.Noboa;
+namespace DiscordBot.InteractionRunner;
 
 public class SignatureException(string message) : Exception(message) { }
 
