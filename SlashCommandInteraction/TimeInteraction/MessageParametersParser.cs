@@ -17,7 +17,7 @@ class MessageParametersParser
 		var dataElement = root.GetProperty("data");
 
 		string? time = null;
-		bool shouldMentionCurrentChannel = false;
+		var shouldMentionCurrentChannel = false;
 		string? gameName = null;
 
 		if (dataElement.TryGetProperty("options", out JsonElement optionsElement))
@@ -25,17 +25,17 @@ class MessageParametersParser
 			foreach (var option in optionsElement.EnumerateArray())
 			{
 				var optionName = option.GetProperty("name").GetString();
-				if (optionName == "hora")
+				switch (optionName)
 				{
-					time = option.GetProperty("value").GetString();
-				}
-				else if (optionName == "mencionar-canal")
-				{
-					shouldMentionCurrentChannel = option.GetProperty("value").GetBoolean();
-				}
-				else if (optionName == "juego")
-				{
-					gameName = option.GetProperty("value").GetString();
+					case "hora":
+						time = option.GetProperty("value").GetString();
+						break;
+					case "mencionar-canal":
+						shouldMentionCurrentChannel = option.GetProperty("value").GetBoolean();
+						break;
+					case "juego":
+						gameName = option.GetProperty("value").GetString();
+						break;
 				}
 			}
 		}

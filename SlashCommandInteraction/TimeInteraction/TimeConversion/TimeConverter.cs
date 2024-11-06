@@ -4,7 +4,6 @@ namespace Dev.Noboa;
 
 class TimeConverter
 {
-
 	public static List<DateRegion> ConvertToAllTimezones(MessageParameters messageParameters)
 	{
 		var allDateRegions = new List<DateRegion>();

@@ -3,13 +3,6 @@ using System.Text.Json;
 
 namespace Dev.Noboa;
 
-enum MessageType
-{
-	Unknown = -1,
-	Ping = 1,
-	SlashCommand = 2
-}
-
 class MessageTypeParser
 {
 	public static MessageType ParseMessageTypeFromBody(string requestBody)
