@@ -18,7 +18,7 @@ class MessageParametersParser
 
 		string? time = null;
 		var shouldMentionCurrentChannel = false;
-		string? gameName = null;
+		string? message = null;
 
 		if (dataElement.TryGetProperty("options", out JsonElement optionsElement))
 		{
@@ -28,18 +28,16 @@ class MessageParametersParser
 				switch (optionName)
 				{
 					case "hora":
+					case "mensaje":
 						time = option.GetProperty("value").GetString();
 						break;
 					case "mencionar-canal":
 						shouldMentionCurrentChannel = option.GetProperty("value").GetBoolean();
 						break;
-					case "juego":
-						gameName = option.GetProperty("value").GetString();
-						break;
 				}
 			}
 		}
 
-		return new MessageParameters(userId, channelId, time ?? "", shouldMentionCurrentChannel, gameName);
+		return new MessageParameters(userId, channelId, time ?? "", shouldMentionCurrentChannel, message);
 	}
 }

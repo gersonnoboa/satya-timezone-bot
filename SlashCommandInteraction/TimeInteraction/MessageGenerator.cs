@@ -9,8 +9,10 @@ class MessageGenerator
 	{
 		var builder = new StringBuilder();
 
-		var game = string.IsNullOrWhiteSpace(messageParameters.GameName) ? "" : $" {messageParameters.GameName}";
-		builder.Append($"<@{messageParameters.UserId}> quiere jugar{game} a las siguientes horas:");
+		if (!string.IsNullOrWhiteSpace(messageParameters.Message))
+		{
+			builder.Append($"{messageParameters.Message}\n");	
+		}
 
 		foreach (var dateRegion in dateRegions)
 		{
