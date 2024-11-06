@@ -28,8 +28,10 @@ class MessageParametersParser
 				switch (optionName)
 				{
 					case "hora":
-					case "mensaje":
 						time = option.GetProperty("value").GetString();
+						break;
+					case "mensaje":
+						message = option.GetProperty("value").GetString();
 						break;
 					case "mencionar-canal":
 						shouldMentionCurrentChannel = option.GetProperty("value").GetBoolean();
