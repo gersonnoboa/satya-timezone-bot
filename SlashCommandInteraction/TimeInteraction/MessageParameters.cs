@@ -1,9 +1,7 @@
 namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 
 public record MessageParameters(
-    string UserId, 
-    string ChannelId, 
+    string UserId,
     string Time, 
-    bool ShouldMentionCurrentChannel, 
     string? Message
     ) { }

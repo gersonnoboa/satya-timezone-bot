@@ -20,11 +20,6 @@ internal abstract class MessageGenerator
 			builder.Append($"\n{time} en {dateRegion.Region.Value}");
 		}
 
-		if (messageParameters.ShouldMentionCurrentChannel)
-		{
-			builder.Append($"\n\n@{messageParameters.ChannelId}");
-		}
-
 		return builder.ToString();
 	}
 }
