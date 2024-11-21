@@ -12,7 +12,7 @@ public abstract class MessageParametersParser
 
 		// Channel
 		var channelElement = root.GetProperty("channel");
-		var channelId = channelElement.GetProperty("id").ToString();
+		var channelId = channelElement.GetProperty("name").ToString();
 
 		// Data
 		var dataElement = root.GetProperty("data");

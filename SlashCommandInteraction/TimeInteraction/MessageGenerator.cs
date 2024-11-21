@@ -22,7 +22,7 @@ internal abstract class MessageGenerator
 
 		if (messageParameters.ShouldMentionCurrentChannel)
 		{
-			builder.Append($"\n\n<#{messageParameters.ChannelId}>");
+			builder.Append($"\n\n@{messageParameters.ChannelId}");
 		}
 
 		return builder.ToString();
