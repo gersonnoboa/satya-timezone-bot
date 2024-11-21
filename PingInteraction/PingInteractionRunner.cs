@@ -7,7 +7,7 @@ internal abstract class PingInteractionRunner
 {
 	public static JsonResult Run(ILogger logger)
 	{
-		logger.LogInformation("Running PingInteraction");
+		logger.LogWarning("Running PingInteraction");
 		return new JsonResult(new { type = 1 });
 	}
 }

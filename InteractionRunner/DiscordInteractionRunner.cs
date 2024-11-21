@@ -12,9 +12,9 @@ internal class DiscordInteractionRunner(HttpRequest request, ILogger logger)
 	{
 		try
 		{
-			logger.LogInformation("Starting Discord Interaction Runner");
+			logger.LogWarning("Starting Discord Interaction Runner");
 			var requestBody = await new StreamReader(request.Body).ReadToEndAsync();
-			logger.LogInformation($"Body: {requestBody}");
+			logger.LogWarning($"Body: {requestBody}");
 			SignatureVerifier.Verify(request, requestBody);
 			var messageType = MessageTypeParser.ParseMessageTypeFromBody(requestBody);
 
@@ -27,17 +27,17 @@ internal class DiscordInteractionRunner(HttpRequest request, ILogger logger)
 		}
 		catch (SignatureException ex)
 		{
-			logger.LogInformation(ex.Message);
+			logger.LogWarning(ex.Message);
 			return new UnauthorizedResult();
 		}
 		catch (SlashCommandParserException ex)
 		{
-			logger.LogInformation(ex.Message);
+			logger.LogWarning(ex.Message);
 			return new BadRequestResult();
 		}
 		catch (Exception ex)
 		{
-			logger.LogInformation(ex.Message);
+			logger.LogWarning(ex.Message);
 			return new BadRequestResult();
 		}
 	}

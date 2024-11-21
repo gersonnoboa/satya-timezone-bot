@@ -13,7 +13,7 @@ internal abstract class SlashCommandInteractionRunner
 		var root = document.RootElement;
 		var slashCommandName = SlashCommandNameParser.Parse(root);
 		
-		logger.LogInformation($"Slash command name: {slashCommandName}");
+		logger.LogWarning($"Slash command name: {slashCommandName}");
 		
 		return slashCommandName switch
 		{
