@@ -1,6 +1,7 @@
 using System.Text.Json;
-using DiscordBot.SlashCommandInteraction.TextInteraction;
+using DiscordBot.SlashCommandInteraction.LoseTextInteraction;
 using DiscordBot.SlashCommandInteraction.TimeInteraction;
+using DiscordBot.SlashCommandInteraction.WinTextInteraction;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -19,7 +20,8 @@ internal abstract class SlashCommandInteractionRunner
 		return slashCommandName switch
 		{
 			"hora" => TimeInteractionRunner.Run(root, logger),
-			"p" => TextInteractionRunner.Run(root, logger),
+			"p" => LoseTextInteractionRunner.Run(root, logger),
+			"g" => WinTextInteractionRunner.Run(root, logger),
 			_ => new BadRequestResult(),
 		};
 	}

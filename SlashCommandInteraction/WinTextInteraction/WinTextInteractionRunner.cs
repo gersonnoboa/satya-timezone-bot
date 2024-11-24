@@ -2,13 +2,13 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace DiscordBot.SlashCommandInteraction.TextInteraction;
+namespace DiscordBot.SlashCommandInteraction.WinTextInteraction;
 
-public abstract class TextInteractionRunner
+public abstract class WinTextInteractionRunner
 {
     public static JsonResult Run(JsonElement root, ILogger logger)
     {
-        return GenerateJsonResult("Qué será perder?");
+        return GenerateJsonResult("Qué será ganar?");
     }
 
     private static JsonResult GenerateJsonResult(string message)
