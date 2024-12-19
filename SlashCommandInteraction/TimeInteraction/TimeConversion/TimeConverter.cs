@@ -46,7 +46,7 @@ internal abstract class TimeConverter
 			return dateTimeOffset;
 		}
 
-		throw new ArgumentException($"Could not parse the time string {timeString}.");
+		throw new ArgumentException($"Could not parse the time string: '{timeString}'.");
 	}
 
 	private static DateTimeOffset ConvertDateTime(DateTimeOffset dateTime, string timeZoneId)
