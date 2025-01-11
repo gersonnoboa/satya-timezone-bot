@@ -13,7 +13,6 @@ public abstract class MessageParametersParser
 		// Data
 		var dataElement = root.GetProperty("data");
 
-		string? time = null;
 		string? message = null;
 
 		if (dataElement.TryGetProperty("options", out var optionsElement))
@@ -23,9 +22,6 @@ public abstract class MessageParametersParser
 				var optionName = option.GetProperty("name").GetString();
 				switch (optionName)
 				{
-					case "hora":
-						time = option.GetProperty("value").GetString();
-						break;
 					case "mensaje":
 						message = option.GetProperty("value").GetString();
 						break;
@@ -33,6 +29,6 @@ public abstract class MessageParametersParser
 			}
 		}
 
-		return new MessageParameters(userId, time ?? "", message);
+		return new MessageParameters(userId, message);
 	}
 }

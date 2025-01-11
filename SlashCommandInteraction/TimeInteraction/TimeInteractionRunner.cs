@@ -12,17 +12,18 @@ internal abstract class TimeInteractionRunner
 		logger.LogWarning("Running SlashCommandInteraction time");
 		var messageParameters = MessageParametersParser.Parse(root);
 		logger.LogWarning($"Running SlashCommandInteraction time: {JsonSerializer.Serialize(messageParameters)}");
-		
+
 		try
 		{
-			if (!TimeChecker.IsTimeCorrect(messageParameters.Time))
+			var timeInMessage = TimeChecker.ExtractTime(messageParameters.Message);
+			if (string.IsNullOrEmpty(timeInMessage))
 			{
-				var malformedTimeMessage = GenerateMalformedTimeMessage(messageParameters.Time); 
-				logger.LogWarning($"Wrong time: '{messageParameters.Time}'. Will send message: '{malformedTimeMessage}'.");
+				var malformedTimeMessage = GenerateMalformedTimeMessage(messageParameters.Message);
+				logger.LogWarning($"No time in message: '{messageParameters.Message}'. Will send message: '{malformedTimeMessage}'.");
 				return GenerateJsonResult(malformedTimeMessage);
 			}
 
-			var allDateRegions = TimeConverter.ConvertToAllTimezones(messageParameters);
+			var allDateRegions = TimeConverter.ConvertToAllTimezones(timeInMessage, messageParameters);
 			var message = MessageGenerator.Generate(messageParameters, allDateRegions);
 
 			logger.LogWarning($"Will send message: {message}.");
@@ -30,7 +31,7 @@ internal abstract class TimeInteractionRunner
 		}
 		catch (Exception e)
 		{
-			var malformedTimeMessage = GenerateMalformedTimeMessage(messageParameters.Time); 
+			var malformedTimeMessage = GenerateMalformedTimeMessage(messageParameters.Message);
 			logger.LogWarning($"Has encountered an error: '{e.Message}'. Will send message: '{malformedTimeMessage}'.");
 			return GenerateJsonResult(malformedTimeMessage);
 		}
