@@ -15,9 +15,9 @@ internal abstract class UsernameToTimezoneMapper
 		{
 			GersonId => Region.Estonia,
 			JajeId => Region.UnitedKingdom,
-			MuertoCaId => Region.Canada,
-			MuertoEuId => Region.Canada,
-			BetoId => Region.Canada,
+			MuertoCaId => Region.CanadaHalifax,
+			MuertoEuId => Region.CanadaHalifax,
+			BetoId => Region.CanadaStJohns,
 			WilsonId => Region.UnitedStates,
 			_ => Region.Ecuador,
 		};
