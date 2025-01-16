@@ -7,6 +7,7 @@ internal abstract class UsernameToTimezoneMapper
 	private const string MuertoCaId = "149452987343962112";
 	private const string MuertoEuId = "1190132962457555000";
 	private const string WilsonId = "138696927112986624";
+	private const string BetoId = "751577747800719411";
 
 	public static Region Map(string user)
 	{
@@ -16,6 +17,7 @@ internal abstract class UsernameToTimezoneMapper
 			JajeId => Region.UnitedKingdom,
 			MuertoCaId => Region.Canada,
 			MuertoEuId => Region.Canada,
+			BetoId => Region.Canada,
 			WilsonId => Region.UnitedStates,
 			_ => Region.Ecuador,
 		};
