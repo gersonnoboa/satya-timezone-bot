@@ -2,12 +2,12 @@ namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
 internal abstract class UsernameToTimezoneMapper
 {
-	private const string GersonId = "319042254058684417";
-	private const string JajeId = "697142901729263739";
-	private const string MuertoCaId = "149452987343962112";
-	private const string MuertoEuId = "1190132962457555000";
-	private const string WilsonId = "138696927112986624";
-	private const string BetoId = "751577747800719411";
+	internal const string GersonId = "319042254058684417";
+	internal const string JajeId = "697142901729263739";
+	internal const string MuertoCaId = "149452987343962112";
+	internal const string MuertoEuId = "1190132962457555000";
+	internal const string WilsonId = "138696927112986624";
+	internal const string BetoId = "751577747800719411";
 
 	public static Region Map(string user)
 	{
