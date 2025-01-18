@@ -22,10 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="InteractionRunner\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\DiscordBot\DiscordBot.csproj" />
     </ItemGroup>
 

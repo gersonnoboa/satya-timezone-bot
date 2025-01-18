@@ -1,12 +1,11 @@
 using System.Text;
-using DiscordBot.InteractionRunner;
 using NSec.Cryptography;
 
 namespace DiscordBot.SignatureVerification;
 
 internal interface ISignatureVerifier
 {
-	Func<byte[], byte[], byte[], bool> PerformVerification { get; set; }
+	Func<string, string, string, string, bool> PerformVerification { get; set; }
 	bool Verify(SignatureVerificationRequest request, string? publicKey);
 }
 
@@ -14,9 +13,14 @@ internal class SignatureException(string message) : Exception(message) { }
 
 internal class SignatureVerifier: ISignatureVerifier
 {
-	public Func<byte[], byte[], byte[], bool> PerformVerification { get; set; } = (publicKeyBytes, messageBytes, signatureBytes) =>
+	public Func<string, string, string, string, bool> PerformVerification { get; set; } = 
+		(signatureString, timestampString, bodyString, publicKeyString) =>
 	{
+		var signatureBytes = Convert.FromHexString(signatureString);
+		var messageBytes = Encoding.UTF8.GetBytes(timestampString + bodyString);
+		
 		var algorithm = SignatureAlgorithm.Ed25519;
+		var publicKeyBytes = Convert.FromHexString(publicKeyString);
 		var publicKey = PublicKey.Import(algorithm, publicKeyBytes, KeyBlobFormat.RawPublicKey);
 
 		return algorithm.Verify(publicKey, messageBytes, signatureBytes);
@@ -37,7 +41,7 @@ internal class SignatureVerifier: ISignatureVerifier
 			throw new SignatureException("No signature or timestamp provided");
 		}
 
-		var isVerified = VerifySignature(signature, timestamp, request.Body, publicKey);
+		var isVerified = PerformVerification(signature, timestamp, request.Body, publicKey);
 
 		if (!isVerified)
 		{
@@ -45,14 +49,5 @@ internal class SignatureVerifier: ISignatureVerifier
 		}
 
 		return isVerified;
-	}
-
-	private bool VerifySignature(string signature, string timestamp, string body, string publicKey)
-	{
-		var publicKeyBytes = Convert.FromHexString(publicKey);
-		var messageBytes = Encoding.UTF8.GetBytes(timestamp + body);
-		var signatureBytes = Convert.FromHexString(signature);
-		
-		return PerformVerification(publicKeyBytes, messageBytes, signatureBytes);
 	}
 }
