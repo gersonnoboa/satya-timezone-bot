@@ -14,8 +14,9 @@ public class PingInteractionRunnerTests
     public void TestSuccess()
     {
         var expected = new JsonResult(new { type = 1 });
-        var actual = PingInteractionRunner.Run(_logger);
+        var jsonResult = PingInteractionRunner.Run(_logger);
+        var actualType = TypeUtils.GetValueFromAnonymousType<int>(jsonResult.Value, "type");
         
-        Assert.AreEqual(expected.ToString(), actual.ToString());
+        Assert.AreEqual(1, actualType);
     }
 }
