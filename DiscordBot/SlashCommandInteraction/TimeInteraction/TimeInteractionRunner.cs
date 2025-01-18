@@ -28,7 +28,9 @@ internal abstract class TimeInteractionRunner
 				return GenerateJsonResult(malformedTimeMessage);
 			}
 
-			var allDateRegions = TimeConverter.ConvertToAllTimezones(timeInMessage, messageParameters);
+			var allDateRegions = TimeConverter.ConvertToAllTimezones(
+				timeInMessage, 
+				messageParameters.UserId);
 			var message = MessageGenerator.Generate(messageParameters, allDateRegions);
 
 			logger.LogWarning($"Will send message: {message}.");

@@ -16,7 +16,7 @@ internal abstract class MessageGenerator
 
 		foreach (var dateRegion in dateRegions)
 		{
-			var time = dateRegion.DateTime.ToString("hh:mm tt");
+			var time = dateRegion.DateTime.ToString("h:mm tt");
 			builder.Append($"\n{time} en {dateRegion.Region.Value}");
 		}
 

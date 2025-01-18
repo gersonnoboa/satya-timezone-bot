@@ -4,11 +4,11 @@ namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
 internal abstract class TimeConverter
 {
-	public static List<DateRegion> ConvertToAllTimezones(string time, MessageParameters messageParameters)
+	public static List<DateRegion> ConvertToAllTimezones(string time, string userId)
 	{
 		var allDateRegions = new List<DateRegion>();
 
-		var sendingUserRegion = UsernameToTimezoneMapper.Map(messageParameters.UserId);
+		var sendingUserRegion = UsernameToTimezoneMapper.Map(userId);
 		var zonedDateTime = ConvertToZonedDateTime(time, sendingUserRegion.TimeZoneId);
 		allDateRegions.Add(new DateRegion(zonedDateTime, sendingUserRegion));
 
