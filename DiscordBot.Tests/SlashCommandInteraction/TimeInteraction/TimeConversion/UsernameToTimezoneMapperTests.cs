@@ -11,6 +11,13 @@ public class UsernameToTimezoneMapperTests
         var actual = UsernameToTimezoneMapper.Map(UsernameToTimezoneMapper.GersonId);
         Assert.AreEqual(Region.Tallinn, actual);
     }
+    
+    [TestMethod]
+    public void TestPinkFloyd()
+    {
+        var actual = UsernameToTimezoneMapper.Map(UsernameToTimezoneMapper.PinkFloydId);
+        Assert.AreEqual(Region.Tallinn, actual);
+    }
 
     [TestMethod]
     public void TestJaje()
