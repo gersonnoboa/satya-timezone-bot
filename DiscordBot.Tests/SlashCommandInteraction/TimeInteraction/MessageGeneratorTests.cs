@@ -39,6 +39,6 @@ public class MessageGeneratorTests
     
     private string Format(DateTimeOffset dateTimeOffset)
     {
-        return dateTimeOffset.ToString("hh:mmtt");
+        return dateTimeOffset.ToString(MessageGenerator.TimeFormat);
     }
 }

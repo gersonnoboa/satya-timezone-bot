@@ -5,6 +5,8 @@ namespace DiscordBot.SlashCommandInteraction.TimeInteraction;
 
 internal abstract class MessageGenerator
 {
+	internal const string TimeFormat = "h:mm tt";
+	
 	public static string Generate(MessageParameters messageParameters, List<DateCountry> dateCountries)
 	{
 		var builder = new StringBuilder();
@@ -16,11 +18,9 @@ internal abstract class MessageGenerator
 
 		foreach (var country in dateCountries)
 		{
-			var format = "h:mmtt";
-			
 			if (country.Regions.Count == 1)
 			{
-				var time = country.Regions.First().DateTime.ToString(format);
+				var time = country.Regions.First().DateTime.ToString(TimeFormat);
 				builder.Append($"\n{country.Country.Value}: {time}");
 			}
 			else
@@ -28,7 +28,7 @@ internal abstract class MessageGenerator
 				builder.Append($"\n{country.Country.Value}: ");
 				var times = country.Regions.Select(dateRegion =>
 				{
-					var time = dateRegion.DateTime.ToString(format);
+					var time = dateRegion.DateTime.ToString(TimeFormat);
 					return $"{time} {dateRegion.Region.Value}";
 				});
 				builder.Append(string.Join(", ", times));
