@@ -6,7 +6,7 @@ namespace DiscordBot.Tests.InteractionRunner;
 public class MessageTypeParserTests
 {
     [TestMethod]
-    public void ReturnsPing()
+    public void TestPing()
     {
         const string body = """{"type":1}""";
         var actual = MessageTypeParser.ParseMessageTypeFromBody(body);
@@ -14,7 +14,7 @@ public class MessageTypeParserTests
     }
     
     [TestMethod]
-    public void ReturnsSlashCommand()
+    public void TestSlashCommand()
     {
         const string body = """{"type":2}""";
         var actual = MessageTypeParser.ParseMessageTypeFromBody(body);
@@ -22,7 +22,7 @@ public class MessageTypeParserTests
     }
     
     [TestMethod]
-    public void ReturnsSlashUnknown()
+    public void TestUnknown()
     {
         const string body = """{"type":3}""";
         var actual = MessageTypeParser.ParseMessageTypeFromBody(body);

@@ -11,7 +11,7 @@ public class PingInteractionRunnerTests
     private readonly ILogger<PingInteractionRunner> _logger = NullLogger<PingInteractionRunner>.Instance;
     
     [TestMethod]
-    public void Test()
+    public void TestSuccess()
     {
         var expected = new JsonResult(new { type = 1 });
         var actual = PingInteractionRunner.Run(_logger);
