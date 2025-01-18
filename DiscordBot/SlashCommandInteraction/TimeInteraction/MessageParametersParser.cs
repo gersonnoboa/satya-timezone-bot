@@ -6,11 +6,9 @@ public abstract class MessageParametersParser
 {
 	public static MessageParameters Parse(JsonElement root)
 	{
-		// User
 		var userElement = root.GetProperty("member").GetProperty("user");
 		var userId = userElement.GetProperty("id").ToString();
 
-		// Data
 		var dataElement = root.GetProperty("data");
 
 		string? message = null;

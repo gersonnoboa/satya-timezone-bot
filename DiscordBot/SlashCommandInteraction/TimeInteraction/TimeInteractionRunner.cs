@@ -12,9 +12,14 @@ internal abstract class TimeInteractionRunner
 		logger.LogWarning("Running SlashCommandInteraction time");
 		var messageParameters = MessageParametersParser.Parse(root);
 		logger.LogWarning($"Running SlashCommandInteraction time: {JsonSerializer.Serialize(messageParameters)}");
-
+		
 		try
 		{
+			if (string.IsNullOrEmpty(messageParameters.Message))
+			{
+				throw new Exception("Message is null or empty");
+			}
+			
 			var timeInMessage = TimeChecker.ExtractTime(messageParameters.Message);
 			if (string.IsNullOrEmpty(timeInMessage))
 			{
@@ -37,9 +42,9 @@ internal abstract class TimeInteractionRunner
 		}
 	}
 
-	private static string GenerateMalformedTimeMessage(string message)
+	private static string GenerateMalformedTimeMessage(string? message)
 	{
-		return $"Pon bien la hora. Pusiste: '{message}'.";
+		return $"Pon bien la hora. Pusiste: '{message ?? ""}'.";
 	}
 
 	private static JsonResult GenerateJsonResult(string message)
