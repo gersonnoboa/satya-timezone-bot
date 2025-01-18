@@ -1,5 +1,4 @@
 using DiscordBot.SlashCommandInteraction;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DiscordBot.Tests.SlashCommandInteraction;
 

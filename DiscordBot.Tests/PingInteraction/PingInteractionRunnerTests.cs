@@ -1,5 +1,4 @@
 using DiscordBot.PingInteraction;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -13,7 +12,6 @@ public class PingInteractionRunnerTests
     [TestMethod]
     public void TestSuccess()
     {
-        var expected = new JsonResult(new { type = 1 });
         var jsonResult = PingInteractionRunner.Run(_logger);
         var actualType = TypeUtils.GetValueFromAnonymousType<int>(jsonResult.Value, "type");
         

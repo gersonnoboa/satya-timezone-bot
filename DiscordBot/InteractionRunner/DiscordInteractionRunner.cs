@@ -1,7 +1,6 @@
 using DiscordBot.PingInteraction;
 using DiscordBot.SignatureVerification;
 using DiscordBot.SlashCommandInteraction;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

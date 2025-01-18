@@ -1,5 +1,4 @@
 using DiscordBot.SignatureVerification;
-using NSec.Cryptography;
 
 namespace DiscordBot.Tests.SignatureVerification;
 
@@ -14,7 +13,7 @@ public class SignatureVerifierTests
     {
         _signatureVerifier = new SignatureVerifier();
         _signatureVerifier.PerformVerification = 
-            (signature, timestamp, body, publicKey) => true;
+            (_, _, _, _) => true;
         
         _signatureVerificationRequest = new SignatureVerificationRequest(
             "signature", 
@@ -62,7 +61,7 @@ public class SignatureVerifierTests
     [ExpectedException(typeof(SignatureException))]
     public void TestFailsWithInvalidSignature()
     {
-        _signatureVerifier.PerformVerification = (s, s1, arg3, arg4) => false; 
+        _signatureVerifier.PerformVerification = (_, _, _, _) => false; 
         _signatureVerifier.Verify(_signatureVerificationRequest, "a");
     }
 }

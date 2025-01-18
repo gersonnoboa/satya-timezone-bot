@@ -1,6 +1,5 @@
 using DiscordBot.SlashCommandInteraction.TimeInteraction;
 using DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
-using Google.Protobuf;
 
 namespace DiscordBot.Tests.SlashCommandInteraction.TimeInteraction;
 
@@ -35,10 +34,5 @@ public class MessageGeneratorTests
                 Assert.IsTrue(line.Contains(','));
             }
         }
-    }
-    
-    private string Format(DateTimeOffset dateTimeOffset)
-    {
-        return dateTimeOffset.ToString(MessageGenerator.TimeFormat);
     }
 }

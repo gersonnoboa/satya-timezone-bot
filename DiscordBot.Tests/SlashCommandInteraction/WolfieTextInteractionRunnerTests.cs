@@ -9,15 +9,6 @@ public class WolfieTextInteractionRunnerTests
     [TestMethod]
     public void TestWolfieTextInteractionRunner()
     {
-        var expected = new JsonResult(new
-        {
-            type = 4,
-            data = new
-            {
-                content = "Qué será jugar con Wolfie?"
-            }
-        });
-        
         var jsonResult = WolfieTextInteractionRunner.Run();
         var actualType = TypeUtils.GetValueFromAnonymousType<int>(jsonResult.Value, "type");
         var data = TypeUtils.GetValueFromAnonymousType<object>(jsonResult.Value, "data");
