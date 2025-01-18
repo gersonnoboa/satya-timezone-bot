@@ -10,23 +10,35 @@ public class MessageGeneratorTests
     [TestMethod]
     public void TestGeneratedMessage()
     {
-        var userId = UsernameToTimezoneMapper.GersonId;
-        var message = "Pilas a las 4PM";
+        const string userId = UsernameToTimezoneMapper.JajeId;
+        const string message = "Pilas a las 4PM";
+        
         var time = TimeChecker.ExtractTime(message);
         var messageParameters = new MessageParameters(userId, message);
-        var dateRegions = TimeConverter.ConvertToAllTimezones(time, userId);
-        var generatedMessage = MessageGenerator.Generate(messageParameters, dateRegions);
+        var dateCountries = TimeConverter.ConvertToAllTimezones(time, userId);
+        var generatedMessage = MessageGenerator.Generate(messageParameters, dateCountries);
 
         var splitMessage = generatedMessage.Split("\n");
         Assert.IsTrue(generatedMessage.StartsWith(message));
-        Assert.AreEqual(8, splitMessage.Length);
-
-        for (int i = 0; i < dateRegions.Count; i++)
+        Assert.AreEqual(Country.AllCountries.Length + 2, splitMessage.Length);
+        
+        Console.WriteLine(generatedMessage);
+        for (var i = 0; i < dateCountries.Count; i++)
         {
-            var dateRegion = dateRegions[i];
+            var dateCountry = dateCountries[i];
             var line = splitMessage[i + 2];
-            var formattedTime = dateRegion.DateTime.ToString("h:mm tt");
-            Assert.AreEqual($"{formattedTime} en {dateRegion.Region.Value}", line);
+
+            Assert.IsTrue(line.StartsWith($"{dateCountry.Country.Value}: "));
+
+            if (dateCountry.Regions.Count > 1)
+            {
+                Assert.IsTrue(line.Contains(','));
+            }
         }
+    }
+    
+    private string Format(DateTimeOffset dateTimeOffset)
+    {
+        return dateTimeOffset.ToString("hh:mmtt");
     }
 }

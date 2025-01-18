@@ -28,10 +28,10 @@ internal abstract class TimeInteractionRunner
 				return GenerateJsonResult(malformedTimeMessage);
 			}
 
-			var allDateRegions = TimeConverter.ConvertToAllTimezones(
+			var allDateCountries = TimeConverter.ConvertToAllTimezones(
 				timeInMessage, 
 				messageParameters.UserId);
-			var message = MessageGenerator.Generate(messageParameters, allDateRegions);
+			var message = MessageGenerator.Generate(messageParameters, allDateCountries);
 
 			logger.LogWarning($"Will send message: {message}.");
 			return GenerateJsonResult(message);

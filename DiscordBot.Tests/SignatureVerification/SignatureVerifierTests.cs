@@ -8,7 +8,6 @@ public class SignatureVerifierTests
 {
     private ISignatureVerifier _signatureVerifier = null!;
     private SignatureVerificationRequest _signatureVerificationRequest = null!;
-    private string? _publicKey = null!;
     
     [TestInitialize]
     public void Initialize()
@@ -21,8 +20,6 @@ public class SignatureVerifierTests
             "signature", 
             "timestamp", 
             "body");
-        _publicKey = "a";
-        
     }
     
     [TestMethod]

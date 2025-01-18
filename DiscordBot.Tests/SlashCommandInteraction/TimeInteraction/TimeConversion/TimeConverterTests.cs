@@ -9,10 +9,24 @@ public class TimeConverterTests
     [TestMethod]
     public void TestConvert()
     {
-        var dateRegions = TimeConverter.ConvertToAllTimezones(
+        var dateCountries = TimeConverter.ConvertToAllTimezones(
             "4PM", 
-            UsernameToTimezoneMapper.GersonId);
-        Assert.AreEqual(dateRegions.Count, Region.AllRegions.Length);
-        Assert.AreEqual(dateRegions[0].Region, Region.Estonia);
+            UsernameToTimezoneMapper.JajeId);
+        
+        Assert.AreEqual(dateCountries.Count, Country.AllCountries.Length);
+        Assert.AreEqual(dateCountries[0].Country, Country.UnitedKingdom);
+        Assert.AreEqual(dateCountries[0].Regions.Count, 1);
+    }
+    
+    [TestMethod]
+    public void TestConvertCountryWithDoubleRegion()
+    {
+        var dateCountries = TimeConverter.ConvertToAllTimezones(
+            "4PM", 
+            UsernameToTimezoneMapper.MuertoCaId);
+        
+        Assert.AreEqual(dateCountries.Count, Country.AllCountries.Length);
+        Assert.AreEqual(dateCountries[0].Country, Country.Canada);
+        Assert.AreEqual(dateCountries[0].Regions.Count, 2);
     }
 }

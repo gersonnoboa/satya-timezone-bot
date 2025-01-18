@@ -4,21 +4,46 @@ namespace DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 
 internal abstract class TimeConverter
 {
-	public static List<DateRegion> ConvertToAllTimezones(string time, string userId)
+	public static List<DateCountry> ConvertToAllTimezones(string time, string userId)
 	{
-		var allDateRegions = new List<DateRegion>();
+		var allDateCountries = new List<DateCountry>();
 
 		var sendingUserRegion = UsernameToTimezoneMapper.Map(userId);
 		var zonedDateTime = ConvertToZonedDateTime(time, sendingUserRegion.TimeZoneId);
-		allDateRegions.Add(new DateRegion(zonedDateTime, sendingUserRegion));
+		var moveToFirstCountry = false;
+		
+		foreach (var country in Country.AllCountries)
+		{
+			var regions = new List<DateRegion>();
+			
+			foreach (var region in country.Regions)
+			{
+				if (region.Equals(sendingUserRegion))
+				{
+					moveToFirstCountry = true;
+					regions.Add(new DateRegion(zonedDateTime, sendingUserRegion));
+				}
+				else
+				{
+					var regionDateTime = ConvertDateTime(zonedDateTime, region.TimeZoneId);
+					var dateRegion = new DateRegion(regionDateTime, region);
+					regions.Add(dateRegion);	
+				}
+			}
+			
+			var dateCountry = new DateCountry(country, regions);
+			if (moveToFirstCountry)
+			{
+				moveToFirstCountry = false;
+				allDateCountries.Insert(0, dateCountry);
+			}
+			else
+			{
+				allDateCountries.Add(dateCountry);
+			}
+		}
 
-		allDateRegions.AddRange(
-			from region in Region.AllRegions
-			where region.Value != sendingUserRegion.Value
-			let regionDateTime = ConvertDateTime(zonedDateTime, region.TimeZoneId)
-			select new DateRegion(regionDateTime, region)
-			);
-		return allDateRegions;
+		return allDateCountries;
 	}
 
 	private static DateTimeOffset ConvertToZonedDateTime(string timeString, string timeZoneId)

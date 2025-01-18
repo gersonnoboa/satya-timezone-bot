@@ -13,13 +13,13 @@ internal abstract class UsernameToTimezoneMapper
 	{
 		return user switch
 		{
-			GersonId => Region.Estonia,
-			JajeId => Region.UnitedKingdom,
-			MuertoCaId => Region.CanadaHalifax,
-			MuertoEuId => Region.CanadaHalifax,
-			BetoId => Region.CanadaStJohns,
-			WilsonId => Region.UnitedStates,
-			_ => Region.Ecuador,
+			GersonId => Region.Tallinn,
+			JajeId => Region.London,
+			MuertoCaId => Region.Halifax,
+			MuertoEuId => Region.Halifax,
+			BetoId => Region.StJohns,
+			WilsonId => Region.NewYork,
+			_ => Region.Guayaquil,
 		};
 	}
 }

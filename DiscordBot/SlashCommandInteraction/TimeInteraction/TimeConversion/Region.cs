@@ -7,13 +7,13 @@ internal class Region: IEquatable<Region>
 	public string Value { get; }
 	public string TimeZoneId { get; }
 
-	public static Region Ecuador => new("Ecuador", "America/Guayaquil");
-	public static Region UnitedStates => new("NY", "America/New_York");
-	public static Region UnitedKingdom => new("UK", "Europe/London");
-	public static Region Estonia => new("Estonia", "Europe/Tallinn");
-	public static Region CanadaHalifax => new("Canadá Halifax", "America/Halifax");
-	public static Region CanadaStJohns => new("Canadá St. Johns", "America/St_Johns");
-	public static Region[] AllRegions => [Ecuador, UnitedStates, UnitedKingdom, Estonia, CanadaHalifax, CanadaStJohns];
+	public static Region Guayaquil => new("Ecuador", "America/Guayaquil");
+	public static Region NewYork => new("NY", "America/New_York");
+	public static Region London => new("UK", "Europe/London");
+	public static Region Tallinn => new("Estonia", "Europe/Tallinn");
+	public static Region Halifax => new("Lunenburg", "America/Halifax");
+	public static Region StJohns => new("NL", "America/St_Johns");
+	public static Region[] AllRegions => [Guayaquil, NewYork, London, Tallinn, Halifax, StJohns];
 
 	public bool Equals(Region? other)
 	{

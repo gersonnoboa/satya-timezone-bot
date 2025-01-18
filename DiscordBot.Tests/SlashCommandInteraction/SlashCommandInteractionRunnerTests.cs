@@ -1,5 +1,6 @@
 using System.Text.Json;
 using DiscordBot.SlashCommandInteraction;
+using DiscordBot.SlashCommandInteraction.TimeInteraction.TimeConversion;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -9,9 +10,21 @@ namespace DiscordBot.Tests.SlashCommandInteraction;
 public class SlashCommandInteractionRunnerTests
 {
     [TestMethod]
+    public void TestTimeCommand()
+    {
+        const string message = "4PM";
+        var document = GetMessageJsonDocument("hora", message);
+        var jsonResult = (JsonResult)SlashCommandInteractionRunner.Run(document, NullLogger<SlashCommandInteractionRunnerTests>.Instance);
+        var data = TypeUtils.GetValueFromAnonymousType<object>(jsonResult.Value, "data");
+        var actualContent = TypeUtils.GetValueFromAnonymousType<string>(data, "content");
+        
+        Assert.IsTrue(actualContent!.StartsWith(message));
+    }
+    
+    [TestMethod]
     public void TestWinCommand()
     {
-        var document = GetJsonDocument("g");
+        var document = GetSimpleJsonDocument("g");
         var jsonResult = (JsonResult)SlashCommandInteractionRunner.Run(document, NullLogger<SlashCommandInteractionRunnerTests>.Instance);
         var data = TypeUtils.GetValueFromAnonymousType<object>(jsonResult.Value, "data");
         var actualContent = TypeUtils.GetValueFromAnonymousType<string>(data, "content");
@@ -22,7 +35,7 @@ public class SlashCommandInteractionRunnerTests
     [TestMethod]
     public void TestLoseCommand()
     {
-        var document = GetJsonDocument("p");
+        var document = GetSimpleJsonDocument("p");
         var jsonResult = (JsonResult)SlashCommandInteractionRunner.Run(document, NullLogger<SlashCommandInteractionRunnerTests>.Instance);
         var data = TypeUtils.GetValueFromAnonymousType<object>(jsonResult.Value, "data");
         var actualContent = TypeUtils.GetValueFromAnonymousType<string>(data, "content");
@@ -33,7 +46,7 @@ public class SlashCommandInteractionRunnerTests
     [TestMethod]
     public void TestWolfieCommand()
     {
-        var document = GetJsonDocument("w");
+        var document = GetSimpleJsonDocument("w");
         var jsonResult = (JsonResult)SlashCommandInteractionRunner.Run(document, NullLogger<SlashCommandInteractionRunnerTests>.Instance);
         var data = TypeUtils.GetValueFromAnonymousType<object>(jsonResult.Value, "data");
         var actualContent = TypeUtils.GetValueFromAnonymousType<string>(data, "content");
@@ -41,7 +54,7 @@ public class SlashCommandInteractionRunnerTests
         Assert.AreEqual("Qué será jugar con Wolfie?", actualContent);
     }
     
-    private string GetJsonDocument(string commandName)
+    private static string GetSimpleJsonDocument(string commandName)
     {
         var obj = new
         {
@@ -52,5 +65,29 @@ public class SlashCommandInteractionRunnerTests
         };
         
         return JsonSerializer.Serialize(obj);
+    }
+    
+    private static string GetMessageJsonDocument(string commandName, string message)
+    {
+        var payload = new
+        {
+            member = new
+            {
+                user = new
+                {
+                    id = UsernameToTimezoneMapper.GersonId
+                }
+            },
+            data = new
+            {
+                options = new[] 
+                {
+                    new { name = "mensaje", value = message }
+                },
+                name = commandName
+            }
+        };
+        
+        return JsonSerializer.Serialize(payload);
     }
 }
