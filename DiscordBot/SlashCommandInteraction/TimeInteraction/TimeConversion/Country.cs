@@ -13,7 +13,7 @@ internal class Country: IEquatable<Country>
     internal static Country Estonia => new("🇪🇪", [Region.Tallinn]);
     internal static Country Canada => new("🇨🇦", [Region.Halifax, Region.StJohns]);
     
-    public static Country[] AllCountries => [Estonia, Ecuador, UnitedKingdom, UnitedStates, Canada];
+    public static Country[] AllCountries => [Estonia, UnitedKingdom, Ecuador, UnitedStates, Canada];
 
     public bool Equals(Country? other)
     {
