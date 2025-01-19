@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DiscordBot.SlashCommandInteraction;
+namespace DiscordBot.SlashCommandInteraction.SimpleTextInteractions;
 
-public abstract class WinTextInteractionRunner
+public abstract class LoseTextInteractionRunner
 {
     public static JsonResult Run()
     {
-        return GenerateJsonResult("Qué será ganar?");
+        return GenerateJsonResult("Qué será perder?");
     }
 
     private static JsonResult GenerateJsonResult(string message)

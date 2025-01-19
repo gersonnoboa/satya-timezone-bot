@@ -1,7 +1,6 @@
-using DiscordBot.SlashCommandInteraction;
-using Microsoft.AspNetCore.Mvc;
+using DiscordBot.SlashCommandInteraction.SimpleTextInteractions;
 
-namespace DiscordBot.Tests.SlashCommandInteraction;
+namespace DiscordBot.Tests.SlashCommandInteraction.SimpleTextInteractions;
 
 [TestClass]
 public class WolfieTextInteractionRunnerTests

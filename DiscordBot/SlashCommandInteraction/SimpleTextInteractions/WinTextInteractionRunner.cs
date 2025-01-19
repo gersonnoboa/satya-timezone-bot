@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DiscordBot.SlashCommandInteraction;
+namespace DiscordBot.SlashCommandInteraction.SimpleTextInteractions;
 
-public abstract class WolfieTextInteractionRunner
+public abstract class WinTextInteractionRunner
 {
     public static JsonResult Run()
     {
-        return GenerateJsonResult("Qué será jugar con Wolfie?");
+        return GenerateJsonResult("Qué será ganar?");
     }
 
     private static JsonResult GenerateJsonResult(string message)
