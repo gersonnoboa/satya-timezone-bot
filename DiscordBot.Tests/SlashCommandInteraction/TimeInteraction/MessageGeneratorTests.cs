@@ -27,7 +27,7 @@ public class MessageGeneratorTests
             var dateCountry = dateCountries[i];
             var line = splitMessage[i + 2];
 
-            Assert.IsTrue(line.StartsWith($"{dateCountry.Country.Value}: "));
+            Assert.IsTrue(line.StartsWith($"{dateCountry.Country.Value}"));
 
             if (dateCountry.Regions.Count > 1)
             {

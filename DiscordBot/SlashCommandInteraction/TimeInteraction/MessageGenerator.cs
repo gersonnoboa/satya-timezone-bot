@@ -21,11 +21,11 @@ internal abstract class MessageGenerator
 			if (country.Regions.Count == 1)
 			{
 				var time = country.Regions.First().DateTime.ToString(TimeFormat);
-				builder.Append($"\n{country.Country.Value}: {time}");
+				builder.Append($"\n{country.Country.Value} {time}");
 			}
 			else
 			{
-				builder.Append($"\n{country.Country.Value}: ");
+				builder.Append($"\n{country.Country.Value} ");
 				var times = country.Regions.Select(dateRegion =>
 				{
 					var time = dateRegion.DateTime.ToString(TimeFormat);

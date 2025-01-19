@@ -7,11 +7,11 @@ internal class Country: IEquatable<Country>
     public string Value { get; }
     public List<Region> Regions { get; }
 
-    internal static Country Ecuador => new("Ecuador", [Region.Guayaquil]);
-    internal static Country UnitedStates => new("USA", [Region.NewYork]);
-    internal static Country UnitedKingdom => new("UK", [Region.London]);
-    internal static Country Estonia => new("Estonia", [Region.Tallinn]);
-    internal static Country Canada => new("Canadá", [Region.Halifax, Region.StJohns]);
+    internal static Country Ecuador => new("🇪🇨", [Region.Guayaquil]);
+    internal static Country UnitedStates => new("🇺🇸", [Region.NewYork]);
+    internal static Country UnitedKingdom => new("🇬🇧", [Region.London]);
+    internal static Country Estonia => new("🇪🇪", [Region.Tallinn]);
+    internal static Country Canada => new("🇨🇦", [Region.Halifax, Region.StJohns]);
     
     public static Country[] AllCountries => [Estonia, Ecuador, UnitedKingdom, UnitedStates, Canada];
 
